@@ -16,13 +16,13 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
 // Database connection settings
+        //Database Section
         "db" => [
             "host" => "18.221.82.70",
             "dbname" => "upstagged",
             "user" => "up",
             "pass" => "abc123"
         ],
-
+        
     ],
 ];
-
