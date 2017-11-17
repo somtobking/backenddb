@@ -7,9 +7,9 @@ use Slim\Http\Response;
 $app->get('/shows', function ($request, $response, $args)
 {
    $pdo= $this->db;
-   $query = $pdo->prepare("SELECT * FROM shows");
-   $query->execute();
-   $shows = $query->fetchAll();
+   $sth = $pdo->prepare("SELECT * FROM shows");
+   $sth->execute();
+   $shows = $sth->fetchAll();
    return $this->response->withJson($shows);
     
 });

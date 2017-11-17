@@ -18,7 +18,7 @@ return [
 // Database connection settings
         //Database Section
         "db" => [
-            "host" => "18.221.82.70",
+            "host" => "localhost",
             "dbname" => "upstagged",
             "user" => "up",
             "pass" => "abc123"
