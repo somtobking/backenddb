@@ -4,6 +4,13 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 // Routes
+$app->get('/shows', function ($request, $response, $args)
+{
+    $PDO = $this->db;
+   $query = $PDO->prepare("SELECT * FROM shows");
+   return $this-> response->withJson($shows);
+    
+});
 
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message
@@ -21,12 +28,4 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
 //     $input['First Name'];
     
 // });
-
-$app->get('/shows', function ($request, $response, $args)
-{
-    $PDO = $this->db;
-   $query = $PDO->prepare("SELECT * FROM shows");
-   return $this-> response->withJson($shows);
-    
-});
 
