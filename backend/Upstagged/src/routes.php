@@ -9,7 +9,7 @@ $app->get('/shows', function ($request, $response, $args)
    $PDO = $this->db;
    $query = $PDO->prepare("SELECT * FROM shows");
    $query->execute();
-   $shows = $PDO->fetchAll();
+   $shows = $query->fetchAll();
    return $this->response->withJson($shows);
     
 });
