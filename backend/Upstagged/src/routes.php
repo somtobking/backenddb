@@ -14,6 +14,16 @@ $app->get('/shows', function ($request, $response, $args)
     
 });
 
+$app->get('/cues', function ($request, $response, $args)
+{
+   $pdo= $this->db;
+   $sth = $pdo->prepare("SELECT * FROM cues");
+   $sth->execute();
+   $cues = $sth->fetchAll();
+   return $this->response->withJson($cues);
+    
+});
+
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
