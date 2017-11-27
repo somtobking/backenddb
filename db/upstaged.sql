@@ -3,43 +3,16 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 26, 2017 at 11:47 PM
+-- Generation Time: Nov 27, 2017 at 11:30 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `upstaged`
+-- Database: `upstagged`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `crew`
---
-
-CREATE TABLE `crew` (
-  `user_id` int(11) NOT NULL,
-  `crewName` varchar(45) NOT NULL,
-  `crewRole` varchar(45) NOT NULL,
-  `show_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `crew`
---
-
-INSERT INTO `crew` (`user_id`, `crewName`, `crewRole`, `show_id`) VALUES
-(3, 'crewName1', 'Role1', 6),
-(4, 'crewName2', 'Role2', 1);
 
 -- --------------------------------------------------------
 
@@ -63,45 +36,16 @@ CREATE TABLE `cues` (
 --
 
 INSERT INTO `cues` (`cue_id`, `show_id`, `cueName`, `cueActionCall`, `cueType`, `Called?`, `Edit`, `cueDelete`) VALUES
-(1, 6, 'name1', 'anything', 'lights', 0, '', 0),
-(2, 5, 'name3', 'anything3', 'lights3', 0, '', 0),
-(3, 5, 'name4', 'anything4', 'lights4', 0, '', 0),
-(6, 5, 'name2', 'anything2', 'lights2', 0, '', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shows`
---
-
-CREATE TABLE `shows` (
-  `show_id` int(11) NOT NULL,
-  `showName` varchar(45) NOT NULL,
-  `Describtion` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `shows`
---
-
-INSERT INTO `shows` (`show_id`, `showName`, `Describtion`) VALUES
-(1, 'first show', 'action'),
-(2, 'second show', 'drama'),
-(3, 'third show', 'animation'),
-(4, 'fourth show', 'comdey'),
-(5, 'fifth show', 'romantic'),
-(6, 'sixth show', 'cartoon');
+(1, 1, 'Lights off', 'After a romantic scene', 'Lights', 0, '', 0),
+(2, 1, 'Lights on', 'When actor walks on stage', 'Lights', 0, '', 0),
+(3, 2, 'Lights off', 'When actor walks off stage', 'Lights', 0, '', 0),
+(4, 2, 'Music', 'After last scene of show', 'Sound', 0, '', 0),
+(5, 4, 'Lights off', 'After action scene', 'Lights', 0, '', 0),
+(6, 3, 'Background color change', 'when character switches ', 'Background Change', 0, '', 0);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `crew`
---
-ALTER TABLE `crew`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `show_id` (`show_id`);
 
 --
 -- Indexes for table `cues`
@@ -111,46 +55,11 @@ ALTER TABLE `cues`
   ADD KEY `show_id` (`show_id`);
 
 --
--- Indexes for table `shows`
---
-ALTER TABLE `shows`
-  ADD PRIMARY KEY (`show_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `crew`
---
-ALTER TABLE `crew`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `cues`
 --
 ALTER TABLE `cues`
   MODIFY `cue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `shows`
---
-ALTER TABLE `shows`
-  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `crew`
---
-ALTER TABLE `crew`
-  ADD CONSTRAINT `crew_ibfk_1` FOREIGN KEY (`show_id`) REFERENCES `shows` (`show_id`);
-
---
--- Constraints for table `cues`
---
-ALTER TABLE `cues`
-  ADD CONSTRAINT `cues_ibfk_1` FOREIGN KEY (`show_id`) REFERENCES `shows` (`show_id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

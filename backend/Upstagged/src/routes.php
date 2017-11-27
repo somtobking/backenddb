@@ -24,6 +24,17 @@ $app->get('/cues', function ($request, $response, $args)
     
 });
 
+$app->post('/addShows', function ($request, $response)
+{
+   $pdo= $this->db;
+   $input = $request->getParsedBody();
+   $sth = $pdo->prepare("INSERT INTO shows VALUES");
+   $sth->execute();
+   $cues = $sth->fetchAll();
+   return $this->response->withJson($cues);
+    
+});
+
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
