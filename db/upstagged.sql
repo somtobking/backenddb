@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 28, 2017 at 07:47 PM
+-- Generation Time: Nov 28, 2017 at 07:58 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -41,13 +41,13 @@ CREATE TABLE `crew` (
 
 INSERT INTO `crew` (`user_id`, `crewName`, `crewRole`, `show_id`, `email`, `phone_num`) VALUES
 (1038, 'Sofia Red', 'Cast', 1, 'sofylovesbub@hotmail.com', 2031678939),
-(1088, 'Chantel Robinson', 'Crew', 4, 'crobinson@gmail.com', 2041590939),
+(1088, 'Chantel Robinson', 'Crew', 1, 'crobinson@gmail.com', 2041590939),
 (1234, 'Clinton Dix', 'Cast', 1, 'clintondix@yahoo.com', 2147483647),
-(1464, 'Jason Watson', 'Actor', 4, 'Jwatson@yahoo.com', 2035683292),
+(1464, 'Jason Watson', 'Actor', 1, 'Jwatson@yahoo.com', 2035683292),
 (1568, 'Drano Mack', 'Crew', 2, 'dmack@aol.com', 2146892012),
-(1663, 'Nora Stec', 'Crew', 4, 'Norastec@tele.us', 2123468906),
-(1834, 'Virginia Jimenez', 'Cast', 3, 'VirginiaGJimenez@gmail.com', 2143268078),
-(1905, 'Wade Compton', 'Actor', 3, 'wadelcompton@tele.us', 2106087454);
+(1663, 'Nora Stec', 'Crew', 2, 'Norastec@tele.us', 2123468906),
+(1834, 'Virginia Jimenez', 'Cast', 2, 'VirginiaGJimenez@gmail.com', 2143268078),
+(1905, 'Wade Compton', 'Actor', 2, 'wadelcompton@tele.us', 2106087454);
 
 -- --------------------------------------------------------
 
@@ -75,8 +75,8 @@ INSERT INTO `cues` (`cue_id`, `show_id`, `cueName`, `cueActionCall`, `cueType`, 
 (2, 1, 'Lights on', 'When actor walks on stage', 'Lights', 0, '', 0),
 (3, 2, 'Lights off', 'When actor walks off stage', 'Lights', 0, '', 0),
 (4, 2, 'Music', 'After last scene of show', 'Sound', 0, '', 0),
-(5, 4, 'Lights off', 'After action scene', 'Lights', 0, '', 0),
-(6, 3, 'Background color change', 'when character switches ', 'Background Change', 0, '', 0);
+(5, 1, 'Lights off', 'After action scene', 'Lights', 0, '', 0),
+(6, 2, 'Background color change', 'when character switches ', 'Background Change', 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -95,10 +95,8 @@ CREATE TABLE `shows` (
 --
 
 INSERT INTO `shows` (`show_id`, `showName`, `Describtion`) VALUES
-(1, 'Lightly Salty', 'Comedy'),
-(2, 'Save me', 'Romance'),
-(3, 'Gulzilla', 'Animation'),
-(4, 'Red Oops', 'Action');
+(1, 'Romeo and Juliet', 'Romance and Drama'),
+(2, 'Hamlet', 'Drama ');
 
 --
 -- Indexes for dumped tables
