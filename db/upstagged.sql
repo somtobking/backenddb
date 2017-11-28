@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 28, 2017 at 07:58 PM
+-- Generation Time: Nov 28, 2017 at 08:16 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -40,14 +40,17 @@ CREATE TABLE `crew` (
 --
 
 INSERT INTO `crew` (`user_id`, `crewName`, `crewRole`, `show_id`, `email`, `phone_num`) VALUES
-(1038, 'Sofia Red', 'Cast', 1, 'sofylovesbub@hotmail.com', 2031678939),
-(1088, 'Chantel Robinson', 'Crew', 1, 'crobinson@gmail.com', 2041590939),
-(1234, 'Clinton Dix', 'Cast', 1, 'clintondix@yahoo.com', 2147483647),
-(1464, 'Jason Watson', 'Actor', 1, 'Jwatson@yahoo.com', 2035683292),
-(1568, 'Drano Mack', 'Crew', 2, 'dmack@aol.com', 2146892012),
-(1663, 'Nora Stec', 'Crew', 2, 'Norastec@tele.us', 2123468906),
-(1834, 'Virginia Jimenez', 'Cast', 2, 'VirginiaGJimenez@gmail.com', 2143268078),
-(1905, 'Wade Compton', 'Actor', 2, 'wadelcompton@tele.us', 2106087454);
+(1038, 'Romeo', 'Cast', 1, 'sofylovesbub@hotmail.com', 2031678939),
+(1088, 'Juliet', 'Cast', 1, 'crobinson@gmail.com', 2041590939),
+(1230, 'Captain Prince', 'Crew', 1, 'cprince@yahoo.com', 2034569703),
+(1234, 'Tybalt', 'Cast', 1, 'clintondix@yahoo.com', 2147483647),
+(1239, 'Horatio', 'Cast', 2, 'shayt@yahoo.com', 2045672356),
+(1464, 'Mercutio', 'Cast', 1, 'Jwatson@yahoo.com', 2035683292),
+(1568, 'Father Laurence', 'Cast', 1, 'dmack@aol.com', 2146892012),
+(1663, 'Polonius', 'Cast', 2, 'Norastec@tele.us', 2123468906),
+(1834, 'Hamlet', 'Cast', 2, 'VirginiaGJimenez@gmail.com', 2143268078),
+(1905, 'Claudius, King of Denmark', 'Cast', 2, 'wadelcompton@tele.us', 2106087454),
+(1906, 'Player Queen', 'Crew', 2, 'adloworu@gmail.com', 2123623245);
 
 -- --------------------------------------------------------
 
@@ -58,8 +61,8 @@ INSERT INTO `crew` (`user_id`, `crewName`, `crewRole`, `show_id`, `email`, `phon
 CREATE TABLE `cues` (
   `cue_id` int(11) NOT NULL,
   `show_id` int(11) NOT NULL,
-  `cueName` varchar(45) NOT NULL,
-  `cueActionCall` varchar(30) NOT NULL,
+  `cueName` varchar(100) NOT NULL,
+  `cueActionCall` varchar(100) NOT NULL,
   `cueType` varchar(30) NOT NULL,
   `Called?` tinyint(1) NOT NULL,
   `Edit` varchar(30) NOT NULL,
@@ -87,14 +90,14 @@ INSERT INTO `cues` (`cue_id`, `show_id`, `cueName`, `cueActionCall`, `cueType`, 
 CREATE TABLE `shows` (
   `show_id` int(11) NOT NULL,
   `showName` varchar(45) NOT NULL,
-  `Describtion` varchar(45) NOT NULL
+  `Description` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `shows`
 --
 
-INSERT INTO `shows` (`show_id`, `showName`, `Describtion`) VALUES
+INSERT INTO `shows` (`show_id`, `showName`, `Description`) VALUES
 (1, 'Romeo and Juliet', 'Romance and Drama'),
 (2, 'Hamlet', 'Drama ');
 
@@ -130,7 +133,7 @@ ALTER TABLE `shows`
 -- AUTO_INCREMENT for table `crew`
 --
 ALTER TABLE `crew`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1906;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1907;
 --
 -- AUTO_INCREMENT for table `cues`
 --
