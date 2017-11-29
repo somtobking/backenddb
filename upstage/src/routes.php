@@ -77,12 +77,7 @@ use Slim\Http\Response;
 
 
 // ---------- crew routes ----------
-// get all crews
-    $app->get('/shows/show_id/crew', function ($request, $response, $args) {
-        $sth = $this->db->prepare("SELECT * FROM crew WHERE show_id=:id ORDER BY show_id");
-        $sth->execute();
-        $crew = $sth->fetchAll();
-        return $this->response->withJson($crew);
+
 
     $app->post('/newCrew', function ($request, $response) {
         $input = $request->getParsedBody();
