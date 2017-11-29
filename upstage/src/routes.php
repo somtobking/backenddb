@@ -79,9 +79,9 @@ use Slim\Http\Response;
 
 // get all crews
     $app->get('/shows/crew/[{id}]', function ($request, $response, $args) {
-        $sql = "SELECT * FROM crew JOIN shows ON crew.show_id = show.show_id WHERE crew.show_id = :id";
+        $sql = "SELECT * FROM crew";
         $sth = $this->db->prepare($sql);
-        $sth->bindParam("id", $args['id']);
+        //$sth->bindParam("id", $args['id']);
         $sth->execute();
         $crew = $sth->fetchAll();
         return $this->response->withJson($crew);
