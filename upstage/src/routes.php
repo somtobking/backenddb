@@ -112,13 +112,14 @@ use Slim\Http\Response;
     $app->post('/newCrew', function ($request, $response) {
         $input = $request->getParsedBody();
 
-        $sql = "INSERT INTO crew (crewName, crewRole, email, phone_num) VALUES (:crewName, :crewRole, :email, :phone_num)";
+        $sql = "INSERT INTO crew (crewName, crewRole, show_id, email, phone_num) 
+        VALUES (:crewName, :crewRole, :show_id :email, :phone_num)";
 
         $sth = $this->db->prepare($sql);
         //$sth->bindParam("user_id", $input['user_id']);
         $sth->bindParam("crewName", $input['crewName']);
         $sth->bindParam("crewRole", $input['crewRole']);
-        //$sth->bindParam("show_id", $input['show_id']);
+        $sth->bindParam("show_id", $input['show_id']);
         $sth->bindParam("email", $input['email']);
         $sth->bindParam("phone_num", $input['phone_num']);
 
@@ -194,12 +195,12 @@ use Slim\Http\Response;
     $app->post('/newCue', function ($request, $response) {
         $input = $request->getParsedBody();
 
-        $sql = "INSERT INTO cues (cueName, cueActionCall, cueType, Called?) 
-        VALUES (:cueName, :cueActionCall, :cueType, :Called?)";
+        $sql = "INSERT INTO cues (show_id, cueName, cueActionCall, cueType, Called?) 
+        VALUES (:show_id, :cueName, :cueActionCall, :cueType, :Called?)";
 
         $sth = $this->db->prepare($sql);
         //$sth->bindParam("cue_id", $input['cue_id']);
-        //$sth->bindParam("show_id", $input['show_id']);
+        $sth->bindParam("show_id", $input['show_id']);
         $sth->bindParam("cueName", $input['cueName']);
         $sth->bindParam("cueActionCall", $input['cueActionCall']);
         $sth->bindParam("cueType", $input['cueType']);
