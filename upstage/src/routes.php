@@ -85,6 +85,7 @@ use Slim\Http\Response;
         $sth->execute();
         $crew = $sth->fetchAll();
         return $this->response->withJson($crew);
+    });
 
     $app->post('/newCrew', function ($request, $response) {
         $input = $request->getParsedBody();
