@@ -37,11 +37,11 @@ use Slim\Http\Response;
     $app->post('/newShow', function ($request, $response) {
         $input = $request->getParsedBody();
 
-        $sql = "INSERT INTO shows (showName, Describtion) VALUES (:showName, :Describtion)";
+        $sql = "INSERT INTO shows (showName, Description) VALUES (:showName, :Description)";
 
         $sth = $this->db->prepare($sql);
         $sth->bindParam("showName", $input['showName']);
-        $sth->bindParam("Describtion", $input['Describtion']);
+        $sth->bindParam("Description", $input['Description']);
         $sth->execute();
         return $this->response->withJson($input);
     });
@@ -50,11 +50,11 @@ use Slim\Http\Response;
 // Update shows with a given id
     $app->put('/updateShow/[{id}]', function ($request, $response, $args) {
         $input = $request->getParsedBody();
-        $sql = "UPDATE shows SET showName=:showName, Describtion=:Describtion WHERE show_id=:id";
+        $sql = "UPDATE shows SET showName=:showName, Description=:Description WHERE show_id=:id";
         $sth = $this->db->prepare($sql);
         $sth->bindParam("id", $args['id']);
         $sth->bindParam("showName", $input['showName']);
-        $sth->bindParam("Describtion", $input['Describtion']);
+        $sth->bindParam("Description", $input['Description']);
 
         $sth->execute();
         $input['id'] = $args['id'];
@@ -72,6 +72,140 @@ use Slim\Http\Response;
         $shows = $sth->fetchObject();
         return $this->response->withJson($shows);
     });
+
+
+
+
+// ---------- crew routes ----------
+
+
+    $app->post('/newCrew', function ($request, $response) {
+        $input = $request->getParsedBody();
+
+        $sql = "INSERT INTO crew (crewName, crewRole, email, phone_num) VALUES (:crewName, :crewRole, :email, :phone_num)";
+
+        $sth = $this->db->prepare($sql);
+        //$sth->bindParam("user_id", $input['user_id']);
+        $sth->bindParam("crewName", $input['crewName']);
+        $sth->bindParam("crewRole", $input['crewRole']);
+        //$sth->bindParam("show_id", $input['show_id']);
+        $sth->bindParam("email", $input['email']);
+        $sth->bindParam("phone_num", $input['phone_num']);
+
+        $sth->execute();
+        return $this->response->withJson($input);
+    });
+
+
+// Update crews with a given id
+    $app->put('/updateCrew/[{id}]', function ($request, $response, $args) {
+        $input = $request->getParsedBody();
+        $sql = "UPDATE crew SET crewName=:crewName, crewRole=:crewRole, email=:email, phone_num=:phone_num WHERE user_id=:id";
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam("id", $args['id']);
+        //$sth->bindParam("user_id", $args['user_id']);
+        $sth->bindParam("crewName", $input['crewName']);
+        $sth->bindParam("crewRole", $input['crewRole']);
+        //$sth->bindParam("show_id", $input['show_id']);
+        $sth->bindParam("email", $input['email']);
+        $sth->bindParam("phone_num", $input['phone_num']);
+        $sth->execute();
+        $input['id'] = $args['id'];
+        return $this->response->withJson($input);
+    });
+
+
+
+// DELETE a crew with given id
+    $app->delete('/deleteCrew/[{id}]', function ($request, $response, $args) {
+
+        $sth = $this->db->prepare("DELETE FROM crew WHERE user_id=:id");
+
+        $sth->bindParam("id", $args['id']);
+        $sth->execute();
+        $shows = $sth->fetchObject();
+        return $this->response->withJson($shows);
+    });
+
+
+// ---------- cues routes ----------
+
+
+    $app->post('/newCue', function ($request, $response) {
+        $input = $request->getParsedBody();
+
+        $sql = "INSERT INTO cues (cue_id, show_id, cueName, cueActionCall, cueType, Called?, Edit, cueDelete) 
+        VALUES (:cue_id, :show_id, :cueName, :cueActionCall, :cueType, :Called?, :Edit, :cueDelete)";
+
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam("cue_id", $input['cue_id']);
+        $sth->bindParam("show_id", $input['show_id']);
+        $sth->bindParam("cueName", $input['cueName']);
+        $sth->bindParam("cueActionCall", $input['cueActionCall']);
+        $sth->bindParam("cueType", $input['cueType']);
+        $sth->bindParam("Called?", $input['Called?']);
+        $sth->bindParam("Edit", $input['Edit']);
+        $sth->bindParam("cueDelete", $input['cueDelete']);
+
+        $sth->execute();
+        return $this->response->withJson($input);
+    });
+
+
+// Update cues with a given id
+    $app->put('/updateCue/[{id}]', function ($request, $response, $args) {
+        $input = $request->getParsedBody();
+        $sql = "UPDATE cues SET cueName=:cueName, cueType=:cueType, cueActionCall=:cueActionCall WHERE cue_id=:id";
+        $sth = $this->db->prepare($sql);
+        $sth->bindParam("id", $args['id']);
+        $sth->bindParam("cueName", $input['cueName']);
+        $sth->bindParam("cueType", $input['cueType']);
+        $sth->bindParam("cueActionCall", $input['cueActionCall']);
+
+        $sth->execute();
+        $input['id'] = $args['id'];
+        return $this->response->withJson($input);
+    });
+
+
+
+// DELETE a cue with given id
+    $app->delete('/deleteCue/[{id}]', function ($request, $response, $args) {
+
+        $sth = $this->db->prepare("DELETE FROM cues WHERE cue_id=:id");
+
+        $sth->bindParam("id", $args['id']);
+        $sth->execute();
+        $shows = $sth->fetchObject();
+        return $this->response->withJson($shows);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
