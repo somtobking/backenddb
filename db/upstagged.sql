@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 28, 2017 at 08:16 PM
+-- Generation Time: Nov 29, 2017 at 02:20 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -144,6 +144,22 @@ ALTER TABLE `cues`
 --
 ALTER TABLE `shows`
   MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `crew`
+--
+ALTER TABLE `crew`
+  ADD CONSTRAINT `crew_ibfk_1` FOREIGN KEY (`show_id`) REFERENCES `shows` (`show_id`);
+
+--
+-- Constraints for table `cues`
+--
+ALTER TABLE `cues`
+  ADD CONSTRAINT `cues_ibfk_1` FOREIGN KEY (`show_id`) REFERENCES `shows` (`show_id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
