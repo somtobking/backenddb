@@ -75,17 +75,39 @@ use Slim\Http\Response;
 
 
 
+
 // ---------- crew routes ----------
 
-// get all crews
-    $app->get('/shows/crew/[{id}]', function ($request, $response, $args) {
-        $sql = "SELECT * FROM crew JOIN shows ON crew.show_id = show.show_id WHERE crew.show_id = :id";
-        $sth = $this->db->prepare($sql);
+
+    // get all crews
+    $app->get('/crew', function ($request, $response, $args) {
+        $sth = $this->db->prepare("SELECT * FROM crew ORDER BY user_id");
+        $sth->execute();
+        $shows = $sth->fetchAll();
+        return $this->response->withJson($shows);
+    });
+
+
+    // Retrieve crew by id 
+    $app->get('/crew/[{id}]', function ($request, $response, $args) {
+        $sth = $this->db->prepare("SELECT * FROM crew WHERE user_id=:id");
         $sth->bindParam("id", $args['id']);
         $sth->execute();
-        $crew = $sth->fetchObject();
-        return $this->response->withJson($crew);
+        $shows = $sth->fetchObject();
+        return $this->response->withJson($shows);
     });
+
+    // Search for crew with a given search term
+    $app->get('/crew/search/[{query}]', function ($request, $response, $args) {
+        $sth = $this->db->prepare("SELECT * FROM crew WHERE UPPER(crewName) LIKE :query ORDER BY crewName");
+        $query = "%".$args['query']."%";
+        $sth->bindParam("query", $query);
+        $sth->execute();
+        $shows = $sth->fetchAll();
+        return $this->response->withJson($shows);
+    });
+
+    // adding a new crew
 
     $app->post('/newCrew', function ($request, $response) {
         $input = $request->getParsedBody();
@@ -139,21 +161,51 @@ use Slim\Http\Response;
 // ---------- cues routes ----------
 
 
+      // get all cues
+    $app->get('/cues', function ($request, $response, $args) {
+        $sth = $this->db->prepare("SELECT * FROM cues ORDER BY cue_id");
+        $sth->execute();
+        $shows = $sth->fetchAll();
+        return $this->response->withJson($shows);
+    });
+
+ // Retrieve cues by id 
+    $app->get('/cue/[{id}]', function ($request, $response, $args) {
+        $sth = $this->db->prepare("SELECT * FROM cues WHERE cue_id=:id");
+        $sth->bindParam("id", $args['id']);
+        $sth->execute();
+        $shows = $sth->fetchObject();
+        return $this->response->withJson($shows);
+    });
+
+    // Search for cues with a given search term
+    $app->get('/cue/search/[{query}]', function ($request, $response, $args) {
+        $sth = $this->db->prepare("SELECT * FROM cues WHERE UPPER(cueName) LIKE :query ORDER BY cueName");
+        $query = "%".$args['query']."%";
+        $sth->bindParam("query", $query);
+        $sth->execute();
+        $shows = $sth->fetchAll();
+        return $this->response->withJson($shows);
+    });
+
+
+//adding a new cues:
+
     $app->post('/newCue', function ($request, $response) {
         $input = $request->getParsedBody();
 
-        $sql = "INSERT INTO cues (cue_id, show_id, cueName, cueActionCall, cueType, Called?, Edit, cueDelete) 
-        VALUES (:cue_id, :show_id, :cueName, :cueActionCall, :cueType, :Called?, :Edit, :cueDelete)";
+        $sql = "INSERT INTO cues (cueName, cueActionCall, cueType, Called?) 
+        VALUES (:cueName, :cueActionCall, :cueType, :Called?)";
 
         $sth = $this->db->prepare($sql);
-        $sth->bindParam("cue_id", $input['cue_id']);
-        $sth->bindParam("show_id", $input['show_id']);
+        //$sth->bindParam("cue_id", $input['cue_id']);
+        //$sth->bindParam("show_id", $input['show_id']);
         $sth->bindParam("cueName", $input['cueName']);
         $sth->bindParam("cueActionCall", $input['cueActionCall']);
         $sth->bindParam("cueType", $input['cueType']);
         $sth->bindParam("Called?", $input['Called?']);
-        $sth->bindParam("Edit", $input['Edit']);
-        $sth->bindParam("cueDelete", $input['cueDelete']);
+        //$sth->bindParam("Edit", $input['Edit']);
+        //$sth->bindParam("cueDelete", $input['cueDelete']);
 
         $sth->execute();
         return $this->response->withJson($input);
@@ -187,6 +239,35 @@ use Slim\Http\Response;
         $shows = $sth->fetchObject();
         return $this->response->withJson($shows);
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Routes
