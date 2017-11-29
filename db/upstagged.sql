@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Nov 29, 2017 at 02:20 AM
+-- Generation Time: Nov 30, 2017 at 12:40 AM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -64,7 +64,7 @@ CREATE TABLE `cues` (
   `cueName` varchar(100) NOT NULL,
   `cueActionCall` varchar(100) NOT NULL,
   `cueType` varchar(30) NOT NULL,
-  `Called?` tinyint(1) NOT NULL,
+  `Called` tinyint(1) NOT NULL,
   `Edit` varchar(30) NOT NULL,
   `cueDelete` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -73,7 +73,7 @@ CREATE TABLE `cues` (
 -- Dumping data for table `cues`
 --
 
-INSERT INTO `cues` (`cue_id`, `show_id`, `cueName`, `cueActionCall`, `cueType`, `Called?`, `Edit`, `cueDelete`) VALUES
+INSERT INTO `cues` (`cue_id`, `show_id`, `cueName`, `cueActionCall`, `cueType`, `Called`, `Edit`, `cueDelete`) VALUES
 (1, 1, 'Lights off', 'After a romantic scene', 'Lights', 0, '', 0),
 (2, 1, 'Lights on', 'When actor walks on stage', 'Lights', 0, '', 0),
 (3, 2, 'Lights off', 'When actor walks off stage', 'Lights', 0, '', 0),
@@ -143,7 +143,7 @@ ALTER TABLE `cues`
 -- AUTO_INCREMENT for table `shows`
 --
 ALTER TABLE `shows`
-  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
