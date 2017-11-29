@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -77,12 +77,7 @@ use Slim\Http\Response;
 
 
 // ---------- crew routes ----------
-// get all crews
-    $app->get('/shows/show_id/crew', function ($request, $response, $args) {
-        $sth = $this->db->prepare("SELECT * FROM shows ORDER BY show_id SELECT * FROM crew");
-        $sth->execute();
-        $crew = $sth->fetchAll();
-        return $this->response->withJson($crew);
+
 
     $app->post('/newCrew', function ($request, $response) {
         $input = $request->getParsedBody();
@@ -134,12 +129,7 @@ use Slim\Http\Response;
 
 
 // ---------- cues routes ----------
-// get all cues
-    $app->get('/cues', function ($request, $response, $args) {
-         $sth = $this->db->prepare("SELECT * FROM cues ORDER BY cue_id");
-         $sth->execute();
-         $cues = $sth->fetchAll();
-        return $this->response->withJson($cues);
+
 
     $app->post('/newCue', function ($request, $response) {
         $input = $request->getParsedBody();
