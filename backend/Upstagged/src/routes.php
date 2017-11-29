@@ -181,6 +181,35 @@ use Slim\Http\Response;
     });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Routes
 
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
