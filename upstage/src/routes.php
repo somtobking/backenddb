@@ -78,10 +78,10 @@ use Slim\Http\Response;
 // ---------- crew routes ----------
 
 // get all crews
-    $app->get('/shows/{show_id}/crew', function ($request, $response, $args) {
-        $sql = "SELECT * FROM crew JOIN shows ON crew.show_id = show.show_id WHERE crew.show_id = :id";
+    $app->get('/crew/[{id]}', function ($request, $response, $args) {
+        $sql = "SELECT * FROM crew WHERE show_id= :id";
         $sth = $this->db->prepare($sql);
-        $sth->bindParam("id", $args['show_id']);
+        $sth->bindParam("id", $args['id']);
         $sth->execute();
         $crew = $sth->fetchAll();
         return $this->response->withJson($crew);
