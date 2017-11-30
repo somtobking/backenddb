@@ -113,7 +113,7 @@ use Slim\Http\Response;
         $input = $request->getParsedBody();
 
         $sql = "INSERT INTO crew (crewName, crewRole, show_id, email, phone_num) 
-        VALUES (:crewName, :crewRole, :show_id :email, :phone_num)";
+        VALUES (:crewName, :crewRole, :show_id, :email, :phone_num)";
 
         $sth = $this->db->prepare($sql);
         //$sth->bindParam("user_id", $input['user_id']);
