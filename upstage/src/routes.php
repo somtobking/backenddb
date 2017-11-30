@@ -195,8 +195,8 @@ use Slim\Http\Response;
     $app->post('/newCue', function ($request, $response) {
         $input = $request->getParsedBody();
 
-        $sql = "INSERT INTO cues (show_id, cueName, cueActionCall, cueType, Called?) 
-        VALUES (:show_id, :cueName, :cueActionCall, :cueType, :Called?)";
+        $sql = "INSERT INTO cues (show_id, cueName, cueActionCall) 
+        VALUES (:show_id, :cueName, :cueActionCall)";
 
         $sth = $this->db->prepare($sql);
         //$sth->bindParam("cue_id", $input['cue_id']);
@@ -204,7 +204,7 @@ use Slim\Http\Response;
         $sth->bindParam("cueName", $input['cueName']);
         $sth->bindParam("cueActionCall", $input['cueActionCall']);
         $sth->bindParam("cueType", $input['cueType']);
-        $sth->bindParam("Called?", $input['Called?']);
+        //$sth->bindParam("Called?", $input['Called?']);
         //$sth->bindParam("Edit", $input['Edit']);
         //$sth->bindParam("cueDelete", $input['cueDelete']);
 
@@ -240,35 +240,6 @@ use Slim\Http\Response;
         $shows = $sth->fetchObject();
         return $this->response->withJson($shows);
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Routes
