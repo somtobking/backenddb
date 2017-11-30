@@ -195,8 +195,8 @@ use Slim\Http\Response;
     $app->post('/newCue', function ($request, $response) {
         $input = $request->getParsedBody();
 
-        $sql = "INSERT INTO cues (show_id, cueName, cueActionCall) 
-        VALUES (:show_id, :cueName, :cueActionCall)";
+        $sql = "INSERT INTO cues (show_id, cueName, cueActionCall, cueType) 
+        VALUES (:show_id, :cueName, :cueActionCall, :cueType)";
 
         $sth = $this->db->prepare($sql);
         //$sth->bindParam("cue_id", $input['cue_id']);
